@@ -1,0 +1,32 @@
+.landing-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f7f7f7;
+}
+
+button {
+  margin: 10px;
+  padding: 15px 30px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.tracker-button {
+  background-color: #4caf50;
+  color: white;
+}
+
+.driver-button {
+  background-color: #2196f3;
+  color: white;
+}
+
+.admin-button {
+  background-color: #f44336;
+  color: white;
+}

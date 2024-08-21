@@ -1,0 +1,348 @@
+<div class="admin-dashboard">
+  <h2>Admin Dashboard</h2>
+  <button
+    data-testid="open-package-modal"
+    (click)="openModal()"
+    class="open-modal-btn"
+  >
+    Create New Package
+  </button>
+
+  <div>
+    <app-package-list [packages]="packages"></app-package-list>
+    <app-delivery-list [deliveries]="deliveries"></app-delivery-list>
+  </div>
+  <div class="modal" [class.show]="isModalOpen">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Create New Package</h2>
+
+      <!-- Package creation form inside modal -->
+      <form
+        [formGroup]="packageForm"
+        (ngSubmit)="onSubmit()"
+        class="package-form"
+      >
+        <div class="form-group">
+          <label for="description">Package Description</label>
+          <input
+            data-testid="package-description-input"
+            id="description"
+            type="text"
+            formControlName="description"
+            placeholder="Enter package description"
+          />
+          <div
+            *ngIf="
+              packageForm.get('description')?.invalid &&
+              packageForm.get('description')?.touched
+            "
+            class="error"
+          >
+            Description is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="weight">Weight (grams)</label>
+          <input
+            id="weight"
+            type="number"
+            formControlName="weight"
+            placeholder="Enter package weight"
+            data-testid="package-weight-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('weight')?.invalid &&
+              packageForm.get('weight')?.touched
+            "
+            class="error"
+          >
+            Weight must be greater than 0.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="width">Width (cm)</label>
+          <input
+            id="width"
+            type="number"
+            formControlName="width"
+            placeholder="Enter package width"
+            data-testid="package-width-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('width')?.invalid &&
+              packageForm.get('width')?.touched
+            "
+            class="error"
+          >
+            Width must be greater than 0.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="height">Height (cm)</label>
+          <input
+            id="height"
+            type="number"
+            formControlName="height"
+            placeholder="Enter package height"
+            data-testid="package-height-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('height')?.invalid &&
+              packageForm.get('height')?.touched
+            "
+            class="error"
+          >
+            Height must be greater than 0.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="depth">Depth (cm)</label>
+          <input
+            id="depth"
+            type="number"
+            formControlName="depth"
+            placeholder="Enter package depth"
+            data-testid="package-depth-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('depth')?.invalid &&
+              packageForm.get('depth')?.touched
+            "
+            class="error"
+          >
+            Depth must be greater than 0.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="from_name">From Name</label>
+          <input
+            id="from_name"
+            type="text"
+            formControlName="from_name"
+            placeholder="Enter sender's name"
+            data-testid="package-from-name-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('from_name')?.invalid &&
+              packageForm.get('from_name')?.touched
+            "
+            class="error"
+          >
+            Sender's name is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="from_address">From Address</label>
+          <input
+            id="from_address"
+            type="text"
+            formControlName="from_address"
+            placeholder="Enter sender's address"
+            data-testid="package-from-address-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('from_address')?.invalid &&
+              packageForm.get('from_address')?.touched
+            "
+            class="error"
+          >
+            Sender's address is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="from_location_lat">Sender's Location (Latitude)</label>
+          <input
+            id="from_location_lat"
+            type="number"
+            formControlName="from_location_lat"
+            placeholder="Enter sender's location latitude"
+            data-testid="package-from-lat-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('from_location_lat')?.invalid &&
+              packageForm.get('from_location_lat')?.touched
+            "
+            class="error"
+          >
+            Sender's location latitude is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="from_location_lng">Sender's Location (Longitude)</label>
+          <input
+            id="from_location_lng"
+            type="number"
+            formControlName="from_location_lng"
+            placeholder="Enter sender's location longitude"
+            data-testid="package-from-lng-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('from_location_lng')?.invalid &&
+              packageForm.get('from_location_lng')?.touched
+            "
+            class="error"
+          >
+            Sender's location longitude is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="to_name">To Name</label>
+          <input
+            id="to_name"
+            type="text"
+            formControlName="to_name"
+            placeholder="Enter recipient's name"
+            data-testid="package-to-name-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('to_name')?.invalid &&
+              packageForm.get('to_name')?.touched
+            "
+            class="error"
+          >
+            Recipient's name is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="to_address">To Address</label>
+          <input
+            id="to_address"
+            type="text"
+            formControlName="to_address"
+            placeholder="Enter recipient's address"
+            data-testid="package-to-address-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('to_address')?.invalid &&
+              packageForm.get('to_address')?.touched
+            "
+            class="error"
+          >
+            Recipient's address is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="to_location_lat">Recipient's Location (Latitude)</label>
+          <input
+            id="to_location_lat"
+            type="number"
+            formControlName="to_location_lat"
+            placeholder="Enter recipient's location latitude"
+            data-testid="package-to-lat-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('to_location_lat')?.invalid &&
+              packageForm.get('to_location_lat')?.touched
+            "
+            class="error"
+          >
+            Recipient's location latitude is required.
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="to_location_lng">Recipient's Location (Longitude)</label>
+          <input
+            id="to_location_lng"
+            type="number"
+            formControlName="to_location_lng"
+            placeholder="Enter recipient's location longitude"
+            data-testid="package-to-lng-input"
+          />
+          <div
+            *ngIf="
+              packageForm.get('to_location_lng')?.invalid &&
+              packageForm.get('to_location_lng')?.touched
+            "
+            class="error"
+          >
+            Recipient's location longitude is required.
+          </div>
+        </div>
+
+        <button
+          type="submit"
+          [disabled]="packageForm.invalid"
+          class="submit-btn"
+          data-testid="create-package-button"
+        >
+          Create Package
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div
+    class="modal-overlay"
+    [class.show]="isModalOpen"
+    (click)="closeModal()"
+  ></div>
+
+  <div>
+    <form [formGroup]="deliveryForm" (ngSubmit)="onSubmitDelivery()">
+      <div class="form-group autocomplete">
+        <div class="input-row">
+          <input
+            id="packageSearch"
+            type="text"
+            formControlName="package"
+            (input)="onPackageSearch()"
+            placeholder="Search for a package..."
+            data-testid="package-search-input"
+          />
+          <button
+            type="submit"
+            [disabled]="deliveryForm.invalid"
+            class="submit-btn"
+            data-testid="create-delivery-button"
+          >
+            Create Delivery
+          </button>
+        </div>
+
+        <ul class="autocomplete-list" *ngIf="filteredPackages.length > 0">
+          <li
+            *ngFor="let pkg of filteredPackages"
+            (click)="onPackageSelect(pkg)"
+            [attr.data-testid]="'package-' + pkg.description"
+          >
+            {{ pkg.description }}
+          </li>
+        </ul>
+      </div>
+
+      <div
+        *ngIf="
+          deliveryForm.get('package')?.invalid &&
+          deliveryForm.get('package')?.touched
+        "
+        class="error"
+      >
+        Please select a package.
+      </div>
+    </form>
+  </div>
+</div>

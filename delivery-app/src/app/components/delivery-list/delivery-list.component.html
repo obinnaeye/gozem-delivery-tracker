@@ -1,0 +1,30 @@
+<div class="delivery-list-container" data-testid="delivery-list">
+  <h2>Delivery List</h2>
+  <table class="delivery-table">
+    <thead>
+      <tr>
+        <th>Delivery ID</th>
+        <th>Package ID</th>
+        <th>Status</th>
+        <th>Pickup Time</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Current Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let delivery of deliveries">
+        <td>{{ delivery.delivery_id }}</td>
+        <td>{{ delivery.package_id }}</td>
+        <td>{{ delivery.status }}</td>
+        <td>{{ delivery.pickup_time | date : "short" }}</td>
+        <td>{{ delivery.start_time | date : "short" }}</td>
+        <td>{{ delivery.end_time | date : "short" }}</td>
+        <td>
+          {{ delivery.location?.lat }}{{ delivery.location?.lat && "," }}
+          {{ delivery.location?.lng }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

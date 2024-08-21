@@ -1,0 +1,62 @@
+<div class="main">
+  <h2>Track Package</h2>
+  <form class="input-row" [formGroup]="packageForm" (ngSubmit)="onSubmit()">
+    <input
+      data-testid="track-package-id"
+      placeholder="Enter Package ID"
+      id="packageId"
+      formControlName="packageId"
+      type="text"
+    />
+    <button data-testid="submit-btn" type="submit">Track Package</button>
+  </form>
+
+  <div class="error-message" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="package" class="container-row">
+    <div class="details-container" data-testid="package-details">
+      <div *ngIf="package">
+        <h3>Package Details</h3>
+        <p data-testid="package-description">
+          <span class="bold">Description: </span>{{ package.description }}
+        </p>
+        <p>
+          <span data-testid="package-from" class="bold">From: </span>
+          {{ package.from_name }} ({{ package.from_address }})
+        </p>
+        <p>
+          <span data-testid="package-to" class="bold">To: </span
+          >{{ package.to_name }} ({{ package.to_address }})
+        </p>
+      </div>
+
+      <div *ngIf="delivery">
+        <h3>Delivery Details</h3>
+        <p class="bold">
+          Status:
+          <span
+            data-testid="delivered-status"
+            [ngClass]="{
+              'delivery-status': true,
+              'picked-up': pickedUp,
+              failed: failed,
+              'in-transit': inTransit,
+              delivered: delivered
+            }"
+            >{{ delivery.status }}</span
+          >
+        </p>
+        <p data-testid="current-location">
+          <span class="bold">Location: </span>{{ delivery.location.lat }},
+          {{ delivery.location.lng }}
+        </p>
+      </div>
+    </div>
+
+    <div class="map-container">
+      <div id="map" style="width: 100%; height: 400px"></div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,36 @@
+<div class="package-list-container" data-testid="package-list">
+  <h2>Package List</h2>
+
+  <table class="package-table">
+    <thead>
+      <tr>
+        <th>Package ID</th>
+        <th>Delivery ID</th>
+        <th>Description</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Weight (grams)</th>
+        <th>Dimensions (cm)</th>
+        <th>From Location</th>
+        <th>To Location</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let package of packages">
+        <td>{{ package.package_id }}</td>
+        <td>{{ package.active_delivery_id }}</td>
+        <td data-testid="package-description-td">{{ package.description }}</td>
+        <td>{{ package.from_name }}<br />{{ package.from_address }}</td>
+        <td>{{ package.to_name }}<br />{{ package.to_address }}</td>
+        <td>{{ package.weight }}</td>
+        <td>
+          {{ package.width }} x {{ package.height }} x {{ package.depth }}
+        </td>
+        <td>
+          {{ package.from_location.lat }}, {{ package.from_location.lng }}
+        </td>
+        <td>{{ package.to_location.lat }}, {{ package.to_location.lng }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

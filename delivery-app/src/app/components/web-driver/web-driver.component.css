@@ -1,0 +1,100 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px;
+  margin: 0;
+  box-sizing: border-box;
+  background-color: #f4f4f4;
+}
+.input-row {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+}
+
+input {
+  flex: 1;
+  padding: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.container-row {
+  display: flex;
+  width: 90%;
+  /* max-width: 600px; */
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-sizing: border-box;
+  width: 20%;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  gap: 10px;
+}
+
+.map-container {
+  width: 60%;
+  padding: 20px;
+  /* background-color: #fff; */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+}
+
+.button-container {
+  width: 10%;
+  justify-content: space-evenly;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  box-sizing: border-box;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box;
+  gap: 30px;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.delivery-status.failed {
+  color: red;
+}
+
+.delivery-status.delivered {
+  color: green;
+}
+
+.delivery-status.in-transit {
+  color: orange;
+}
+
+.delivery-status.picked-up {
+  color: #f4a261;
+}
+
+.delivery-status.open {
+  color: black;
+}

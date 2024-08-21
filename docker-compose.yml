@@ -1,0 +1,47 @@
+services:
+    mongo:
+        image: mongo
+        container_name: mongo
+        ports:
+            - "27017:27017"
+        environment:
+            - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+            - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+            - MONGO_INITDB_DATABASE=${MONGO_INITDB_DATABASE}
+        volumes:
+            - mongo-data:/data/db
+        # healthcheck:
+        #     test: echo 'db.runCommand({serverStatus:1}).ok' | mongo admin -u $MONGO_INITDB_ROOT_USERNAME -p $MONGO_INITDB_ROOT_PASSWORD --quiet | grep 1
+        #     interval: 10s
+        #     timeout: 5s
+        #     retries: 5
+        #     start_period: 5s
+        # healthcheck:
+        #     test:
+        #         [
+        #             "CMD",
+        #             "mongo",
+        #             "--username",
+        #             "admin",
+        #             "--password",
+        #             "admin",
+        #             "--authenticationDatabase",
+        #             "admin",
+        #             "--host",
+        #             "127.0.0.1:27017",
+        #             "--eval",
+        #             "db.adminCommand('ping')",
+        #         ]
+        #     interval: 10s
+        #     timeout: 5s
+        #     retries: 5
+        #     start_period: 5s
+        networks:
+            - app-network
+
+networks:
+    app-network:
+        driver: bridge
+
+volumes:
+    mongo-data:
