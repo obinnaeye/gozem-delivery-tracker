@@ -4,11 +4,13 @@ import dotenv from "dotenv";
 import cors from "cors";
 import { Server } from "socket.io";
 import http from "http";
+import swaggerUi from "swagger-ui-express";
 import packageRoutes from "./routes/package.routes";
 import deliveryRoutes from "./routes/delivery.routes";
 import wss from "./websocket/websocket";
 import Package from "./models/package.model";
 import restoreDbRoutes from "./routes/restore-db.routes";
+import { swaggerDocument } from "./routes/openApi";
 dotenv.config({ path: "../.env" });
 
 const startServer = async () => {
@@ -35,6 +37,8 @@ const startServer = async () => {
 	} catch (error) {
 		console.error("MongoDB connection error:", error);
 	}
+
+	app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 	app.use("/api/package", packageRoutes);
 	app.use("/api/delivery", deliveryRoutes);

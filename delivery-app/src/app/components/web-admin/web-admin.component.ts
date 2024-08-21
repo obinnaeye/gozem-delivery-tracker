@@ -100,7 +100,23 @@ export class WebAdminComponent {
 
   onSubmit(): void {
     if (this.packageForm.valid) {
-      const packageData = this.packageForm.value;
+      const {
+        from_location_lat,
+        from_location_lng,
+        to_location_lat,
+        to_location_lng,
+      } = this.packageForm.value;
+      const packageData = {
+        ...this.packageForm.value,
+        from_location: {
+          lat: from_location_lat,
+          lng: from_location_lng,
+        },
+        to_location: {
+          lat: to_location_lat,
+          lng: to_location_lng,
+        },
+      };
       this.packageService.createPackage(packageData).subscribe({
         next: (response) => {
           this.packages.push(response);

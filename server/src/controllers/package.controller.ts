@@ -45,12 +45,10 @@ export const createPackage = async (
 			depth,
 			from_name,
 			from_address,
-			from_location_lat,
-			from_location_lng,
+			from_location,
 			to_name,
 			to_address,
-			to_location_lat,
-			to_location_lng,
+			to_location,
 		} = req.body;
 
 		const newPackage: IPackage = new Package({
@@ -63,16 +61,10 @@ export const createPackage = async (
 			depth,
 			from_name,
 			from_address,
-			from_location: {
-				lat: from_location_lat,
-				lng: from_location_lng,
-			},
+			from_location,
 			to_name,
 			to_address,
-			to_location: {
-				lat: to_location_lat,
-				lng: to_location_lng,
-			},
+			to_location,
 		});
 
 		await newPackage.save();
@@ -139,7 +131,7 @@ export const searchPackages = async (req: Request, res: Response) => {
 			},
 		});
 
-		if (req.query.isOpen) {
+		if (req.query.isOpen === "true") {
 			const package_ids = packages.map((pkg) => pkg.package_id);
 			const deliveries = await Delivery.find({
 				package_id: { $in: package_ids },

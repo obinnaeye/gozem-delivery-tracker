@@ -48,7 +48,10 @@ Before running the application, you need to set up environment variables for Mon
 3. **Access the Application**
 
     Frontend: Open your browser and navigate to http://localhost:4200 to access the Angular frontend.
+
     Express Server: The backend API will be available at http://localhost:5000.
+
+    Swagger Doc: The backend API Swagger documentation will be available at http://localhost:5000/api-docs.
 
 4. **Running Component Tests**
 
